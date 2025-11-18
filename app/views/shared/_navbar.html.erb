@@ -1,0 +1,32 @@
+<nav class="simplify-nav">
+  <ul class="simplify-nav-buttons">
+
+    <!-- ALL ARTICLES -->
+    <li class="simplify-nav-button">
+      <%= link_to articles_path,
+                  class: "simplify-nav-link #{'active' if current_page?(articles_path)}" do %>
+        <i class="fa-solid fa-list simplify-nav-icons"></i>
+        <span class="simplify-nav-labels">All Articles</span>
+      <% end %>
+    </li>
+
+    <!-- NEW ARTICLE -->
+    <li class="simplify-nav-button simplify-nav-button-center">
+      <%= link_to root_path,
+                  class: "simplify-nav-link #{'active' if current_page?(root_path)}" do %>
+        <i class="fa-regular fa-square-plus simplify-nav-icons simplify-nav-icons-center"></i>
+        <span class="simplify-nav-labels">New Article</span>
+      <% end %>
+    </li>
+
+    <!-- ALL FAVORITES -->
+    <li class="simplify-nav-button">
+      <%= link_to favorites_path,
+                  class: "simplify-nav-link #{'active' if current_page?(favorites_path)}" do %>
+        <i class="fa-regular fa-bookmark simplify-nav-icons"></i>
+        <span class="simplify-nav-labels">All Favorites</span>
+      <% end %>
+    </li>
+
+  </ul>
+</nav>
