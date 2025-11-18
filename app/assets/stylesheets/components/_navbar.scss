@@ -1,12 +1,76 @@
-.navbar-lewagon {
+/* Mobile First View */
+
+.simplify-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #0094a5; /* SIMPLIFY Color: Custom Teal */
+  padding: 8px 0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+}
+
+.simplify-nav-buttons {
+  display: flex;
   justify-content: space-between;
-  background: white;
+  padding: 0 24px;
+  margin: 0;
+  list-style: none;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.simplify-nav-button {
+  flex: 1;
+  text-align: center;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.simplify-nav-button-center {
+  transform: translateY(-2px);
+}
+
+.simplify-nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 11px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.simplify-nav-link:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.simplify-nav-link.active {
+  font-weight: 600;
+}
+
+.simplify-nav-icons {
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.simplify-nav-icons-center {
+  font-size: 24px;
+}
+
+.screen {
+  padding-bottom: 70px;
+}
+
+/* For Tabs & Web */
+@media (min-width: 768px) {
+  .simplify-nav {
+    top: 0;
+    bottom: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .screen {
+    max-width: 480px;
+    margin: 0 auto;
+    padding-top: 70px;
+  }
 }
