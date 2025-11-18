@@ -1,0 +1,37 @@
+
+
+  <header class="row bg-info text-white py-3">
+  </header>
+
+  <div class="col d-flex justify-content-between align-items-center">
+      <div>
+        <h1 class="mb-0 small">Japanese Level N5 – N1</h1>
+      </div>
+      <span class="badge bg-white text-info fw-bold fs-6 px-3 py-2">
+        <%= simple_form_for @article do |f| %>
+          <%= f.input :language_level,
+              as: :select,
+              collection: ["N5", "N4", "N3", "N2", "N1"],
+              prompt: "Choose Level" %>
+          <%= f.button :submit, "Update level" %>
+        <% end %>
+      </span>
+    </div>
+
+
+  <main class="row flex-grow-1 overflow-auto">
+    <div class="col-12 p-3">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <p class="card-text">
+            <%= simple_format(@article.content) %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="article-actions">
+    <%# ここに Chat ページへ飛ぶボタンを後でつなぐ %>
+    <%= link_to "Chat", "#", class: "btn btn-primary" %>
+  </div>
