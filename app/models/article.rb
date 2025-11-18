@@ -6,18 +6,26 @@ class Article < ApplicationRecord
 
   def generate_content
     prompt = <<~PROMPT
-      You are a Japanese language teacher experienced in working with international students.
-      I am a student learning japanese and I want to improve my reading skills.
-      The JLPT has five levels, N1 to N5, with N5 being the easiest and N1 being the most difficult. Levels N4 and N5 are for basic, classroom-level Japanese, while N1 and N2 test the ability to understand Japanese used in a wide range of real-life situations. N3 serves as a bridge between these levels, testing a degree of everyday Japanese understanding.
-      Language level breakdown as follow:
-      N5: The most basic level, assessing the ability to understand some basic Japanese and simple, slow conversations on familiar topics. This is suitable for understanding short, common sentences and simple messages like advertisements or menus.
-      N4: Covers a more comprehensive understanding of basic Japanese, with the ability to read and understand everyday topics and slowly spoken conversations. This level is for understanding simple letters and brochures.
-      N3: A bridge between basic and advanced levels, testing the ability to understand Japanese used in everyday situations to a certain degree. This level requires understanding of about 90% of daily conversation vocabulary and is suitable for internships or jobs requiring more fluid verbal communication.
-      N2: Assesses the ability to understand Japanese used in a variety of circumstances and everyday situations to a certain degree. This level demonstrates the proficiency needed for full-time jobs and undergraduate/graduate programs in Japan that are taught in Japanese.
-      N1: The most advanced level, measuring the ability to understand a wide range of Japanese, including reading complex texts and understanding nuanced meanings in passages. This level qualifies individuals for roles requiring a high degree of Japanese proficiency, such as highly technical translation or positions in Japanese companies.
-      Simplify the article changing the original wordsm characters and grammar points according to the JLPT #{language_level} level.
+      You are a Japanese language teacher who works with international students preparing for the JLPT (Japanese Language Proficiency Test).
+      I am currently studying for the JLPT at level #{language_level}.
+      Please take the following article and simplify it using grammar structures, vocabulary, and kanji that are appropriate for the JLPT #{language_level} level.
+      JLPT Level Ability Reference:
+        •	N5: Able to understand very basic Japanese. Recognizes simple kanji, everyday vocabulary, and short, polite sentences. Can understand simple texts like menus, signs, or self-introductions.
+        •	N4: Understands basic grammar and vocabulary used in daily life. Can read and understand simple texts such as emails, leaflets, and short stories. Listens to conversations spoken slowly and clearly.
+        •	N3: Can understand Japanese used in everyday situations. Recognizes about 600 kanji and 3,000 vocabulary words. Can follow longer dialogues and read short newspaper articles or workplace instructions.
+        •	N2: Understands a wide range of topics in everyday and business settings. Can read complex texts such as newspaper editorials and follow longer spoken material even with some natural speed and nuance.
+        •	N1: Near-native comprehension. Understands highly abstract, technical, or literary material. Can grasp implied meanings, tone, and nuance in a wide range of formal and informal settings.
+      Simplification Guidelines:
+        •	Use grammar, vocabulary, and kanji appropriate to JLPT #{language_level}.
+        •	Replace or explain complex words and expressions.
+        •	Rephrase sentences for clarity while preserving meaning.
+        •	Keep the tone natural, as used in materials for JLPT reading practice.
+      Task:
+      Target JLPT level: #{language_level}
+      Text to simplify:
       #{original_content}
-      Answer it with words and kanji that I should be able to understand according to my language level.
+      Output:
+        Simplified Japanese version (using kanji and grammar within JLPT #{language_level})
     PROMPT
     response = RubyLLM.chat.ask(prompt)
     self.content = response.content
