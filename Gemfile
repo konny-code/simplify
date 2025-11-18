@@ -52,6 +52,7 @@ gem "sassc-rails"
 
 #adding new one
 gem "devise"
+gem "ostruct"
 
 group :development, :test do
   gem "dotenv-rails"
