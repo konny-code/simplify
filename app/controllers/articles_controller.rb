@@ -6,11 +6,21 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.user = current_user
-    @article.content = @article.generate_content
     if @article.save
+      @article.generate_content
       redirect_to article_path(@article)
     else
-      render "pages/home"
+      render "pages/home", status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+       @article.generate_content
+       redirect_to article_path(@article)
+    else
+      render :show, status: :unprocessable_entity
     end
   end
 

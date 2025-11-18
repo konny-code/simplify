@@ -21,5 +21,6 @@ class Article < ApplicationRecord
     PROMPT
     response = RubyLLM.chat.ask(prompt)
     self.content = response.content
+    save
   end
 end
