@@ -1,37 +1,98 @@
+<header class="row bg-info text-white py-3">
+</header>
 
-
-  <header class="row bg-info text-white py-3">
-  </header>
-
-  <div class="col d-flex justify-content-between align-items-center">
-      <div>
-        <h1 class="mb-0 small">Japanese Level N5 – N1</h1>
-      </div>
-      <span class="badge bg-white text-info fw-bold fs-6 px-3 py-2">
-        <%= simple_form_for @article do |f| %>
-          <%= f.input :language_level,
-              as: :select,
-              collection: ["N5", "N4", "N3", "N2", "N1"],
-              prompt: "Choose Level" %>
-          <%= f.button :submit, "Update level" %>
-        <% end %>
-      </span>
-    </div>
-
-
-  <main class="row flex-grow-1 overflow-auto">
-    <div class="col-12 p-3">
-      <div class="card shadow-sm border-0">
-        <div class="card-body">
-          <p class="card-text">
-            <%= simple_format(@article.content) %>
-          </p>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <div class="article-actions">
-    <%# ここに Chat ページへ飛ぶボタンを後でつなぐ %>
-    <%= link_to "Chat", "#", class: "btn btn-primary" %>
+<div class="col d-flex justify-content-between align-items-center">
+  <div>
+    <h1 class="mb-0 small">Japanese Level N5 – N1</h1>
   </div>
+  <span class="badge bg-white text-info fw-bold fs-6 px-3 py-2">
+    <%= simple_form_for @article do |f| %>
+      <%= f.input :language_level,
+          as: :select,
+          collection: ["N5", "N4", "N3", "N2", "N1"],
+          prompt: "Choose Level" %>
+      <%= f.button :submit, "Update Level" %>
+    <% end %>
+  </span>
+</div>
+
+<main class="row flex-grow-1 overflow-auto">
+  <div class="col-12 p-3">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <p class="card-text">
+          <%= simple_format(@article.content) %>
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="article-actions">
+  <%= button_to "Chat",
+                chats_path(article_id: @article.id),
+                method: :post,
+                class: "btn btn-primary" %>
+</div>
+
+
+
+<!-- Translations List -->
+<div class="mt-4 p-3">
+  <h3 class="fw-bold">Saved Translations</h3>
+
+  <!-- List Translations that belong to this article -->
+  <% if @article.translations.any? %>
+    <ul class="list-group mb-3">
+      <% @article.translations.each do |translation| %>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <!-- LEFT: Word + Definition -->
+          <div>
+            <strong><%= translation.word %></strong><br>
+            <small class="text-muted"><%= translation.definition %></small>
+          </div>
+
+          <!-- RIGHT: Bookmark Button -->
+          <div>
+            <%= button_to translation_favorites_path(translation),
+                          method: :post,
+                          class: "btn p-0 border-0 bg-transparent",
+                          title: "Save to Favorites" do %>
+
+              <i class="fa-regular fa-bookmark"
+                 style="font-size: 20px; color: #00a6b8;"></i>
+
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-muted">No translations yet for this article.</p>
+  <% end %>
+
+  <!-- Form to test translation create -->
+  <div class="card shadow-sm mb-5">
+    <div class="card-body">
+      <h5 class="card-title">Add Translation</h5>
+      <p class="text-muted small mb-3">
+        This form is temporary and only for testing the translation creation flow.
+        Later, this will be replaced when clicking on a word.
+      </p>
+
+      <%= form_with(model: [@article, Translation.new], local: true) do |f| %>
+        <div class="mb-3">
+          <%= f.label :word, "Word", class: "form-label fw-bold" %>
+          <%= f.text_field :word, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :definition, "Definition", class: "form-label fw-bold" %>
+          <%= f.text_area :definition, rows: 3, class: "form-control" %>
+        </div>
+
+        <%= f.submit "Save Translation", class: "btn btn-info text-white fw-bold" %>
+      <% end %>
+    </div>
+  </div>
+</div>
