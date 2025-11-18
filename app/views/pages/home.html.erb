@@ -1,2 +1,7 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <%= simple_form_for [@home, @article] do |f| %>
+  <%= f.input :language_level, label: 'Japanese Level N5 - N1', collection: ['N5', 'N4', 'N3', 'N2', 'N1'] %>
+  <%= f.input :original_content, placeholder: 'Paste the article in here' %>
+  <%= f.submit %>
+  <% end %>
+</div>
