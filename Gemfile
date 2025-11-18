@@ -53,6 +53,8 @@ gem "sassc-rails"
 #adding new one
 gem "devise"
 gem "ostruct"
+gem "ruby_llm", "~> 1.6.4"
+
 
 group :development, :test do
   gem "dotenv-rails"
