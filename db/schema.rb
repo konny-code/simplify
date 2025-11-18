@@ -10,9 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_17_084155) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_18_030717) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.text "content"
+    t.string "language_level"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "original_content"
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.string "title"
+    t.bigint "article_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_chats_on_article_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "translation_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["translation_id"], name: "index_favorites_on_translation_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.string "role"
+    t.bigint "chat_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+  end
+
+  create_table "translations", force: :cascade do |t|
+    t.text "word"
+    t.text "definition"
+    t.bigint "article_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_translations_on_article_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +72,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_17_084155) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "articles", "users"
+  add_foreign_key "chats", "articles"
+  add_foreign_key "favorites", "translations"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "translations", "articles"
 end
