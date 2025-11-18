@@ -1,0 +1,35 @@
+<div class="container py-3 screen screen--articles-index">
+  <header class="mb-3">
+    <h1 class="h4 fw-bold mb-1">All Articles</h1>
+    <p class="text-muted small mb-0">
+      Simplified News Articles List
+    </p>
+  </header>
+
+  <% if @articles.any? %>
+    <div class="list-group mb-5">
+      <% @articles.each do |article| %>
+        <%= link_to article_path(article), class: "list-group-item list-group-item-action" do %>
+          <div class="d-flex w-100 justify-content-between">
+            <span class="badge bg-info text-white">
+              <%= article.language_level.presence || "Level ?" %>
+            </span>
+            <small class="text-muted">
+              <%= article.created_at&.strftime("%Y-%m-%d %H:%M") %>
+            </small>
+          </div>
+          <p class="mb-1 mt-2 small">
+            <%= truncate(article.content, length: 90) %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted">
+      You don’t have any Articles yet.
+      Try creating a simplified Article from the home page.
+    </p>
+  <% end %>
+
+  <%= render "shared/navbar" %>
+</div>
