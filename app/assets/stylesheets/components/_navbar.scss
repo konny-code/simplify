@@ -1,19 +1,24 @@
-/* Mobile First View */
+/* -------------------------------------------------------
+   SIMPLIFY NAVBAR — FULL WIDTH, FIXED BOTTOM, ALL DEVICES
+-------------------------------------------------------- */
 
 .simplify-nav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: #0094a5; /* SIMPLIFY Color: Custom Teal */
+  width: 100%;
+  background: #0094a5; /* SIMPLIFY teal */
   padding: 8px 0;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
-  z-index: 100;
+  z-index: 1000;
 }
 
+/* NAV BUTTONS LAYOUT */
 .simplify-nav-buttons {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 24px;
   margin: 0;
   list-style: none;
@@ -24,10 +29,12 @@
   text-align: center;
 }
 
+/* Small lift for center button if needed */
 .simplify-nav-button-center {
   transform: translateY(-2px);
 }
 
+/* LINKS STYLING */
 .simplify-nav-link {
   color: #ffffff;
   text-decoration: none;
@@ -39,14 +46,15 @@
 }
 
 .simplify-nav-link:hover {
-  opacity: 0.9;
+  opacity: 0.85;
   transform: translateY(-1px);
 }
 
 .simplify-nav-link.active {
-  font-weight: 600;
+  font-weight: 700;
 }
 
+/* ICONS */
 .simplify-nav-icons {
   font-size: 20px;
   margin-bottom: 2px;
@@ -56,21 +64,20 @@
   font-size: 24px;
 }
 
+/* Keep content above nav */
 .screen {
-  padding-bottom: 70px;
+  padding-bottom: 80px; /* approx height of nav */
 }
 
-/* For Tabs & Web */
-@media (min-width: 768px) {
-  .simplify-nav {
-    top: 0;
-    bottom: auto;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  }
+/* -------------------------------------------------------
+   DESKTOP + TABLET ADJUSTMENTS
+   (Navbar stays full-width, bottom-fixed)
+-------------------------------------------------------- */
 
+@media (min-width: 768px) {
   .screen {
-    max-width: 480px;
+    max-width: 960px;
     margin: 0 auto;
-    padding-top: 70px;
+    padding-bottom: 80px;
   }
 }

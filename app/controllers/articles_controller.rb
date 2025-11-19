@@ -4,9 +4,22 @@ class ArticlesController < ApplicationController
     @articles = current_user.articles.order(created_at: :desc)
   end
 
+  # def show
+  #   @article = Article.find(params[:id])
+  # end
+
   def show
-    @article = Article.find(params[:id])
+  @article = Article.find(params[:id])
+
+  # whatever is in the jsonb column
+  raw_segments = @article.sentences
+
+  # we only accept Arrays, everything else becomes []
+  @segments = raw_segments.is_a?(Array) ? raw_segments : []
   end
+
+
+
 
   def create
     @article = Article.new(article_params)

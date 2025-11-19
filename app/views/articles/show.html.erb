@@ -1,33 +1,30 @@
-<header class="row bg-info text-white py-3">
-</header>
+<header class="simplify-header"></header>
 
-<div class="col d-flex justify-content-between align-items-center">
-  <div>
-    <h1 class="mb-0 small">Japanese Level N5 – N1</h1>
-  </div>
-  <span class="badge bg-white text-info fw-bold fs-6 px-3 py-2">
-    <%= simple_form_for @article do |f| %>
-      <%= f.input :language_level,
-          as: :select,
-          collection: Article::LEVELS, include_blank: false,
-          prompt: "Choose Level" %>
-      <%= f.button :submit, "Update Level" %>
-    <% end %>
-  </span>
-</div>
+<%= render "shared/japanese_level_selector" %>
 
 <main class="row flex-grow-1 overflow-auto">
   <div class="col-12 p-3">
     <div class="card shadow-sm border-0">
       <div class="card-body">
-        <p class="card-text">
-          <%= simple_format(@article.content) %>
-        </p>
+        <div class="simplify-article-body">
+
+          <% Array(@segments).each do |segment| %>
+            <p class="simplify-sentence mb-2">
+              <% Array(segment["parts"]).each do |surface, info| %>
+                <span class="simplify-word"><%= surface %></span>
+              <% end %>
+            </p>
+          <% end %>
+
+        </div>
       </div>
     </div>
   </div>
 </main>
 
 <div class="article-actions">
-  <%= button_to "Chat", chats_path(article_id: @article.id), method: :post, class: "btn btn-primary" %>
+  <%= button_to "CHAT",
+                chats_path(article_id: @article.id),
+                method: :post,
+                class: "simplify-chat-button" %>
 </div>
