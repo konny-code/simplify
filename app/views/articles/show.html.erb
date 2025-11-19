@@ -9,7 +9,7 @@
     <%= simple_form_for @article do |f| %>
       <%= f.input :language_level,
           as: :select,
-          collection: ["N5", "N4", "N3", "N2", "N1"],
+          collection: Article::LEVELS, include_blank: false,
           prompt: "Choose Level" %>
       <%= f.button :submit, "Update Level" %>
     <% end %>

@@ -6,7 +6,7 @@
 <h1 class="text-center fw-bold">Welcome to SIMPLIFY!</h1>
 <div class="container">
   <%= simple_form_for [@home, @article] do |f| %>
-  <%= f.input :language_level, label: 'Japanese Level N5 - N1', collection: ['N5', 'N4', 'N3', 'N2', 'N1'] %>
+  <%= f.input :language_level, label: 'Japanese Level N5 - N1', collection: Article::LEVELS, include_blank: false %>
   <%= f.input :original_content, label:"", placeholder: 'Paste the article in here' %>
   <%= f.submit value: "Simplify", class:"btn btn-primary" %>
   <% end %>
