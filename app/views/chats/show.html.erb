@@ -1,0 +1,16 @@
+<br>
+<br>
+<br>
+
+<div id="title">
+  <%= "Title of the Article" %> #@article.title
+</div>
+
+<div id="messages">
+  <%= render 'messages/messages', messages: @chat.messages %>
+</div>
+
+<div id="new_message_container">
+  <%# The keys inside of a render statement, are variables inside of that partials %>
+  <%= render 'messages/form', chat: @chat, message: @message %>
+</div>
