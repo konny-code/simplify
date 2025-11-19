@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   before_action :set_chat
   before_action :set_article
 
-  SYSTEM_PROMPT = "You are a Teaching Assistant.\n\nI am a student at the Le Wagon AI Software Development Bootcamp, learning how to code.\n\nHelp me break down my problem into small, actionable steps, without giving away solutions.\n\nAnswer concisely in Markdown."
+  SYSTEM_PROMPT = "You are an English teacher. If the question is about Japanese culture, customs, or other topics that may be unfamiliar to people from overseas, please explain the background as well."
   def create
 
     @chat = Chat.find(params[:chat_id])
@@ -53,29 +53,5 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:content)
   end
 
-  # def create
-  #   @message       = @chat.messages.new(message_params)
-  #   @message.role ||= "user"
 
-  #   if @message.save
-  #     # Call AI and add assistant reply here
-  #     redirect_to chat_path(@chat)
-  #   else
-  #     redirect_to chat_path(@chat),
-  #                 alert: "Could not send Message."
-  #   end
-  # end
-
-  # private
-
-  # def set_chat
-  #   # Chat belongs to < article of < the current user
-  #   @chat = Chat.joins(:article)
-  #               .where(articles: { user_id: current_user.id })
-  #               .find(params[:chat_id])
-  # end
-
-  # def message_params
-  #   params.require(:message).permit(:content, :role)
-  # end
 end
