@@ -29,8 +29,5 @@
 </main>
 
 <div class="article-actions">
-  <%= button_to "Chat",
-                chats_path(article_id: @article.id),
-                method: :post,
-                class: "btn btn-primary" %>
+  <%= button_to "Chat", chats_path(article_id: @article.id), method: :post, class: "btn btn-primary" %>
 </div>
