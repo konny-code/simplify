@@ -1,0 +1,75 @@
+/* -------------------------------------------------------
+   JAPANESE LEVEL SELECTOR — SLIM, CLEAN, TEAL
+-------------------------------------------------------- */
+
+.japanese-level-selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 10px;        /* slimmer bar */
+  background: #fdfdfd;      /* super subtle neutral */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 12px;          /* lighter typography */
+}
+
+.japanese-level-label {
+  font-weight: 600;
+  color: #2e2e2e;
+}
+
+/* right-side inline form */
+.japanese-level-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+/* selector pill — new slim teal style */
+.japanese-level-select {
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid #0097a7;       /* softer SIMPLIFY teal (slightly lighter) */
+  background: #ffffff;
+  color: #007e8c;                  /* deeper teal for text */
+  font-size: 12px;
+  height: 28px;                    /* SLIMMER */
+  font-weight: 500;
+}
+
+/* button pill — also slim teal */
+.japanese-level-button {
+  border-radius: 12px;
+  border: none;
+  background: #0097a7;             /* new simplified teal */
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;               /* slimmer */
+  height: 28px;                    /* SLIMMER */
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.japanese-level-button:hover {
+  background: #007e8c;             /* darker hover teal */
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+/* micro-adjust for tiny screens */
+@media (max-width: 390px) {
+  .japanese-level-selector {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  .japanese-level-select,
+  .japanese-level-button {
+    font-size: 11px;
+    height: 26px;
+  }
+}

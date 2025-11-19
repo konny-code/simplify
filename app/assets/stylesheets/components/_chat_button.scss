@@ -1,0 +1,37 @@
+/* -------------------------------------------------------
+   SIMPLIFY Chat Button — teal, bottom-left, above navbar
+-------------------------------------------------------- */
+
+/* place the container fixed at bottom-left, above navbar */
+.article-actions {
+  position: fixed;
+  left: 10px;          /* aligns with Japanese level padding-left */
+  bottom: 80px;        /* sit just above bottom nav (nav height ≈ 80px) */
+  z-index: 200;        /* above content, below any modals */
+}
+
+/* button look */
+.simplify-chat-button {
+  background: #0097a7;      /* SIMPLIFY teal */
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.simplify-chat-button:hover {
+  background: #007e8c;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}

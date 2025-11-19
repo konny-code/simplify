@@ -1,0 +1,12 @@
+<div class="japanese-level-selector">
+  <span class="japanese-level-label">
+    Japanese Level N5 – N1
+  </span>
+
+  <div class="japanese-level-form">
+    <%= f.select :language_level,
+                 options_for_select(%w[N5 N4 N3 N2 N1], f.object.language_level),
+                 {},
+                 class: "japanese-level-select" %>
+  </div>
+</div>

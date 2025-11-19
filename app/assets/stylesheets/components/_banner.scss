@@ -1,20 +1,60 @@
+/* =========================================================
+   SIMPLIFY — BANNER COMPONENT
+   Shows full image, no cropping, fully responsive
+   ========================================================= */
+
 .banner {
-  background-size: cover;
-  background-position: center;
-  padding: 150px 0;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
-.banner h1 {
-  margin: 0;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
+/* Main banner image */
+.banner-image {
+  display: block;
+  width: 100%;
+  height: auto;     /* <-- maintains natural proportions */
 }
 
-.banner p {
-  font-size: 20px;
-  color: white;
-  opacity: .7;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+/* Optional dark gradient overlay — uncomment if needed */
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.25)
+  );
+  pointer-events: none;
 }
+
+/* Optional centered text overlay — currently unused
+   Uncomment if you want text over the banner.
+---------------------------------------------------- */
+/*
+.banner-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  }
+
+  p {
+    font-size: 20px;
+    opacity: 0.85;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    margin: 0;
+  }
+}
+*/
