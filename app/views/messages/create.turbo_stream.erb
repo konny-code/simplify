@@ -1,0 +1,10 @@
+<%# # find the messages div
+      # insert the last two messages into that %>
+<%# turbo_stream.verb 'id_of_location' %>
+<%= turbo_stream.append "messages" do %>
+  <%# insert an HTML partial %>
+  <%= render 'messages/messages', messages: @chat.messages.order(created_at: :asc).last(2) %>
+<% end %>
+<%= turbo_stream.update "new_message_container" do %>
+  <%= render 'messages/form', chat: @chat, message: Message.new %>
+<% end %>
