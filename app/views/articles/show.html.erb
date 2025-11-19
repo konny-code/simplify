@@ -29,10 +29,7 @@
 </main>
 
 <div class="article-actions">
-  <%= button_to "Chat",
-                chats_path(article_id: @article.id),
-                method: :post,
-                class: "btn btn-primary" %>
+  <%= button_to "Chat", chats_path(article_id: @article.id), method: :post, class: "btn btn-primary" %>
 </div>
 
 
@@ -58,10 +55,7 @@
                           method: :post,
                           class: "btn p-0 border-0 bg-transparent",
                           title: "Save to Favorites" do %>
-
-              <i class="fa-regular fa-bookmark"
-                 style="font-size: 20px; color: #00a6b8;"></i>
-
+              <i class="fa-regular fa-bookmark" style="font-size: 20px; color: #00a6b8;"></i>
             <% end %>
           </div>
         </li>

@@ -31,4 +31,78 @@ class Article < ApplicationRecord
     self.content = response.content
     save
   end
+
+  def generate_sentences
+    prompt = <<~PROMPT
+    You are a Japanese language assistant helping a software engineer extract linguistic information from Japanese text.
+    Your task is to:
+    1. Break the Japanese text provided in #{content} into individual sentences.
+    2. For each sentence, segment it into meaningful word or phrase blocks.
+    3. For each block, provide:
+      - The original word or phrase
+      - Its reading in hiragana or katakana
+      - Its English meaning
+    Output the result in the following structured JSON format, grouped by sentence:
+    senteces = [
+  {
+    sentence: "Sentence 1",
+    parts: {
+      "大谷さん" => {
+        reading: 'おおたにさん',
+        meaning: 'Mr. Ōtani'
+      },
+      "は" => {
+        reading: 'は',
+        meaning: 'Topic marker'
+      },
+      "試合" => {
+        reading: 'しあい',
+        meaning: 'Game / Match'
+      },
+      "を" => {
+        reading: 'を',
+        meaning: 'Object marker'
+      },
+      "しました" => {
+        reading: 'しました',
+        meaning: 'Did / Played'
+      },
+    }
+  },
+  {
+    sentence: "Sentence 2",
+    parts: {
+      "その" => {
+        reading: 'その',
+        meaning: 'That (referring to the previous game)'
+      },
+      "試合" => {
+        reading: 'しあい',
+        meaning: 'Game / Match'
+      },
+      "で" => {
+        reading: 'で',
+        meaning: 'Location marker (means “in/at”)'
+      },
+      "ホームラン" => {
+        reading: 'ホームラン',
+        meaning: 'Home run'
+      },
+      "を" => {
+        reading: 'を',
+        meaning: 'Object marker'
+      },
+      "打ちました" => {
+        reading: 'うちました',
+        meaning: 'Hit'
+      },
+    }
+  }
+]
+  Once you have broken down the text from #{content}, insert the structured data into the #{sentences} array.
+    PROMPT
+    response = RubyLLM.chat.ask(prompt)
+    self.sentences = response.content
+    save
+  end
 end
