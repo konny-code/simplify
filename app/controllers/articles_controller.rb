@@ -4,43 +4,16 @@ class ArticlesController < ApplicationController
     @articles = current_user.articles.order(created_at: :desc)
   end
 
-  # def show
-  #   @article = Article.find(params[:id])
-  # end
-
-  # def show
-  # @article = Article.find(params[:id])
-
-  # # whatever is in the jsonb column
-  # raw_segments = @article.sentences
-
-  # # we only accept Arrays, everything else becomes []
-  # @segments = raw_segments.is_a?(Array) ? raw_segments : []
-  # end
-
   def show
-  @article = Article.find(params[:id])
-
-  raw = @article.sentences
-
-  @segments =
-    case raw
-    when String
-      # sentences stored as JSON string → parse it
-      JSON.parse(raw)
-    when Array
-      # if later you store it as real JSONB / Array
-      raw
-    else
-      []
+    @article = Article.find(params[:id])
+    raw = @article.sentences.gsub(/```json\n|```/, '').gsub("=>", ":")
+    begin
+      @segments = JSON.parse(raw)
+    rescue JSON::ParserError => e
+      Rails.logger.error "JSON Parse Error: #{e.message}"
+      @segments = []
     end
-  rescue JSON::ParserError
-  # if the LLM ever returns bad JSON, avoid crashing
-  @segments = []
   end
-
-
-
 
   def create
     @article = Article.new(article_params)

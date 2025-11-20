@@ -8,40 +8,23 @@
         <h5 class="mb-3"><%= @article.title %></h5>
 
         <div class="simplify-article-body">
-          <% @segments.each do |segment| %>
-            <p class="simplify-sentence mb-2">
-              <% parts = segment["parts"] || {} %>
-
-              <% parts.each do |surface, info| %>
-                <% reading = info["reading"] %>
-                <% meaning = info["meaning"] %>
-
-                <%= content_tag :span, surface,
-                      class: "simplify-word",
-                      tabindex: 0,
-                      data: {
-                        bs_toggle:    "popover",
-                        bs_trigger:   "focus",
-                        bs_html:      "true",
-                        bs_placement: "top",
-                        bs_content:   render(
-                          "shared/word_popover",
-                          word: surface,
-                          reading: reading,
-                          meaning: meaning,
-                          article: @article
-                        )
-                      } %>
-              <% end %>
-            </p>
+          <% if @segments.any? %>
+            <% @segments.each do |segment| %>
+              <p class="simplify-sentence mb-2">
+                <% segment["parts"].each do |surface, info| %>
+                  <span class="simplify-word"><%= surface %></span>
+                <% end %>
+              </p>
+            <% end %>
+          <% else %>
+            <%= @article.content %>
           <% end %>
         </div>
       </div>
     </div>
   </div>
 </main>
-
-<div class="article-actions mt-3">
+<div class="article-actions">
   <%= button_to "CHAT",
                 chats_path(article_id: @article.id),
                 method: :post,

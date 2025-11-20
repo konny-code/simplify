@@ -1,4 +1,4 @@
 class Translation < ApplicationRecord
   belongs_to :article
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
 end

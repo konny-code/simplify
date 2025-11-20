@@ -6,6 +6,6 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :language_level, presence: true
-  has_many :favorites
-  has_many :articles
+  has_many :favorites, dependent: :destroy
+  has_many :articles, dependent: :destroy
 end
