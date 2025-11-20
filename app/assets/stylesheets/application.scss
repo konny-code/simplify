@@ -44,3 +44,53 @@
 .simplify-article-body {
   padding-bottom: 1rem;
 }
+
+/* Use our own look instead of the black tooltip */
+.tooltip.simplify-tooltip {
+  pointer-events: auto; /* allow clicking the bookmark button */
+}
+
+.tooltip.simplify-tooltip .tooltip-inner {
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+/* Card inside tooltip */
+.tooltip-meaning-card {
+  background: #0094a5;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tooltip-meaning-text {
+  font-size: 0.9rem;
+}
+
+/* Bookmark button */
+.tooltip-bookmark-btn {
+  background: #0094a5;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: white;
+}
+
+.tooltip-bookmark-btn:hover {
+  color: #174143; /* your teal theme if you like */
+}
+
+
+/* REQUIRED for clickability */
+.tooltip.simplify-tooltip {
+  pointer-events: auto !important;
+}
+
+.tooltip.simplify-tooltip .tooltip-inner {
+  pointer-events: auto !important;
+}
