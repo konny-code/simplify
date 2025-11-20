@@ -1,21 +1,13 @@
 <header class="simplify-header"></header>
-
 <%= render "shared/japanese_level_selector" %>
-
 <main class="row flex-grow-1 overflow-auto">
   <div class="col-12 p-3">
     <div class="card shadow-sm border-0">
       <div class="card-body">
         <div class="simplify-article-body">
-
-          <% Array(@segments).each do |segment| %>
-            <p class="simplify-sentence mb-2">
-              <% Array(segment["parts"]).each do |surface, info| %>
-                <span class="simplify-word"><%= surface %></span>
-              <% end %>
-            </p>
+          <%= @article.sentences["sentence"].each do |parts| %>
+          <p><%= parts %></p>
           <% end %>
-
         </div>
       </div>
     </div>
