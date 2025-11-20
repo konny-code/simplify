@@ -6,7 +6,6 @@
       <div class="card-body">
         <%= @article.title %>
         <div class="simplify-article-body">
-          <%= @article.content %>
           <% @segments.each do |segment| %>
             <p class="simplify-sentence mb-2">
               <% segment["parts"].each do |surface, info| %>
