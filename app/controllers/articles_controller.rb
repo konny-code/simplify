@@ -48,6 +48,7 @@ class ArticlesController < ApplicationController
     if @article.save
       @article.generate_content
       @article.generate_sentences
+      @article.generate_title
       redirect_to article_path(@article)
     else
       render "pages/home", status: :unprocessable_entity
@@ -59,6 +60,7 @@ class ArticlesController < ApplicationController
     if @article.update(article_params)
       @article.generate_content
       @article.generate_sentences
+      @article.generate_title
       redirect_to article_path(@article)
     else
       render :show, status: :unprocessable_entity

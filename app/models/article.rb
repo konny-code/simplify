@@ -525,7 +525,7 @@ class Article < ApplicationRecord
       #{original_content}
       Output:
         Take the article and simplify it using grammar structures, vocabulary, and kanji that are appropriate for the JLPT #{language_level} level.
-        Create a short title for the article.
+
     PROMPT
     response = RubyLLM.chat.ask(prompt)
     self.content = response.content
@@ -603,6 +603,22 @@ class Article < ApplicationRecord
     PROMPT
     response = RubyLLM.chat.ask(prompt)
     self.sentences = response.content
+    save
+  end
+
+  def generate_title
+    prompt = <<~PROMPT
+      You are a Japanese language teacher who works with international students preparing for the JLPT (Japanese Language Proficiency Test).
+      I am currently studying for the JLPT at level #{language_level}.
+      You shoud make a title from the article according to the guidelines base on language level: #{PROMPTS[language_level]}
+      TASK:
+      Text to make a title:
+      #{original_content}
+      Output:
+        Prepare a title less than 20 character long using grammar structures, vocabulary, and kanji that are appropriate for the JLPT #{language_level} level.
+    PROMPT
+    response = RubyLLM.chat.ask(prompt)
+    self.title = response.content
     save
   end
 end
