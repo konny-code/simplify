@@ -4,6 +4,7 @@
   <div class="col-12 p-3">
     <div class="card shadow-sm border-0">
       <div class="card-body">
+        <%= @article.title %>
         <div class="simplify-article-body">
           <%= @article.content %>
           <% @segments.each do |segment| %>
