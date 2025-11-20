@@ -1,0 +1,91 @@
+/* =========================================================
+   TOP NAVBAR OVER BANNER (Transparent black)
+========================================================= */
+
+.banner {
+  position: relative; /* allow absolute top navbar */
+}
+
+/* Top navbar */
+.simplify-top-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  /* Keep your original transparent black background */
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(3px);
+
+  padding: 6px 14px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  z-index: 50;
+}
+
+/* =========================================================
+   LOGO CIRCLE — SAME SIZE & COLOR AS AVATAR
+========================================================= */
+
+.simplify-logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.simplify-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* SAME size and radius as avatar */
+.simplify-logo-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  /* Same lighter gray as avatar */
+  background-color: #e0e0e0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SI Logo inside the circle */
+/* Logo inside the circle — fill most of the space */
+.simplify-logo-img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+
+/* =========================================================
+   AVATAR (Match logo circle)
+========================================================= */
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  /* same light gray as logo circle */
+  background-color: #e0e0e0;
+
+  padding: 4px; /* optional, depending on avatar image edges */
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+/* Fix spacing for right-side items */
+.navbar-nav .nav-item {
+  margin-left: 12px;
+}
