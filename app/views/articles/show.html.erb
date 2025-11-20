@@ -1,7 +1,7 @@
 <header class="simplify-header"></header>
 <%= render "shared/japanese_level_selector" %>
 
-<main class="row flex-grow-1 overflow-auto">
+<main class="row flex-grow-1 overflow-auto" data-controller="popover">
   <div class="col-12 p-3">
     <div class="card shadow-sm border-0">
       <div class="card-body">
@@ -12,7 +12,7 @@
             <% @segments.each do |segment| %>
               <p class="simplify-sentence mb-2">
                 <% segment["parts"].each do |surface, info| %>
-                  <span class="simplify-word"><%= surface %></span>
+                  <span class="simplify-word" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="<h4><%= info["meaning"] %></h4>" ><%= surface %></span>
                 <% end %>
               </p>
             <% end %>
