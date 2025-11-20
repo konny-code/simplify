@@ -542,7 +542,7 @@ class Article < ApplicationRecord
       - The original word or phrase
       - Its reading in hiragana or katakana
       - Its English meaning
-    Output the result in the following structured JSON format, grouped by sentence:
+    Output the result and fill the JSON format as the example below, grouped by sentence:
     senteces = [
   {
     sentence: "Sentence 1",

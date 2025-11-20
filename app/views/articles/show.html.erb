@@ -5,7 +5,6 @@
     <div class="card shadow-sm border-0">
       <div class="card-body">
         <div class="simplify-article-body">
-          <%= @article.content %>
           <% @segments.each do |segment| %>
             <p class="simplify-sentence mb-2">
               <% segment["parts"].each do |surface, info| %>
