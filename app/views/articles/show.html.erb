@@ -6,19 +6,22 @@
       <div class="card-body">
         <%= @article.title %>
         <div class="simplify-article-body">
-          <% @segments.each do |segment| %>
-            <p class="simplify-sentence mb-2">
-              <% segment["parts"].each do |surface, info| %>
-                <span class="simplify-word"><%= surface %></span>
-              <% end %>
-            </p>
+          <% if @segments.any? %>
+            <% @segments.each do |segment| %>
+              <p class="simplify-sentence mb-2">
+                <% segment["parts"].each do |surface, info| %>
+                  <span class="simplify-word"><%= surface %></span>
+                <% end %>
+              </p>
+            <% end %>
+          <% else %>
+            <%= @article.content %>
           <% end %>
         </div>
       </div>
     </div>
   </div>
 </main>
-
 <div class="article-actions">
   <%= button_to "CHAT",
                 chats_path(article_id: @article.id),

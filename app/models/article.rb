@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
-  has_many :translations, dependent: :destroy
-  has_many :chats, dependent: :destroy
+  has_many :translations
+  has_many :chats
   validates :original_content, presence: true
   LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1']
   PROMPTS = {
@@ -542,7 +542,7 @@ class Article < ApplicationRecord
       - The original word or phrase
       - Its reading in hiragana or katakana
       - Its English meaning
-    Output the result and fill the JSONB format as the example below, grouped by sentence:
+    Output the result and fill the JSON format as the example below, grouped by sentence:
     senteces = [
   {
     sentence: "Sentence 1",
