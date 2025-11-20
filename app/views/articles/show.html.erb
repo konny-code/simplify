@@ -1,15 +1,37 @@
 <header class="simplify-header"></header>
 <%= render "shared/japanese_level_selector" %>
+
 <main class="row flex-grow-1 overflow-auto">
   <div class="col-12 p-3">
     <div class="card shadow-sm border-0">
       <div class="card-body">
-        <%= @article.title %>
+        <h5 class="mb-3"><%= @article.title %></h5>
+
         <div class="simplify-article-body">
           <% @segments.each do |segment| %>
             <p class="simplify-sentence mb-2">
-              <% segment["parts"].each do |surface, info| %>
-                <span class="simplify-word"><%= surface %></span>
+              <% parts = segment["parts"] || {} %>
+
+              <% parts.each do |surface, info| %>
+                <% reading = info["reading"] %>
+                <% meaning = info["meaning"] %>
+
+                <%= content_tag :span, surface,
+                      class: "simplify-word",
+                      tabindex: 0,
+                      data: {
+                        bs_toggle:    "popover",
+                        bs_trigger:   "focus",
+                        bs_html:      "true",
+                        bs_placement: "top",
+                        bs_content:   render(
+                          "shared/word_popover",
+                          word: surface,
+                          reading: reading,
+                          meaning: meaning,
+                          article: @article
+                        )
+                      } %>
               <% end %>
             </p>
           <% end %>
@@ -19,7 +41,7 @@
   </div>
 </main>
 
-<div class="article-actions">
+<div class="article-actions mt-3">
   <%= button_to "CHAT",
                 chats_path(article_id: @article.id),
                 method: :post,

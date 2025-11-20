@@ -1,0 +1,36 @@
+<div class="word-popover">
+  <p class="mb-1 fw-bold"><%= word %></p>
+
+  <% if reading.present? %>
+    <p class="mb-1 text-muted"><%= reading %></p>
+  <% end %>
+
+  <% if meaning.present? %>
+    <p class="mb-2"><%= meaning %></p>
+  <% end %>
+
+  <div class="d-flex justify-content-end gap-2">
+
+    <%= button_to favorites_path,
+                  method: :post,
+                  params: {
+                    favorite: {
+                      word: word,
+                      reading: reading,
+                      meaning: meaning,
+                      article_id: article.id
+                    }
+                  },
+                  form_class: "d-inline",
+                  class: "btn btn-sm btn-primary" do %>
+
+      <i class="fa-solid fa-bookmark me-1"></i>
+      FAVORITE
+    <% end %>
+
+    <button type="button"
+            class="btn btn-sm btn-outline-secondary js-word-popover-close">
+      ✕
+    </button>
+  </div>
+</div>
