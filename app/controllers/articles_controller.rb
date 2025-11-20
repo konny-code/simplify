@@ -5,24 +5,14 @@ class ArticlesController < ApplicationController
   end
 
   def show
-  @article = Article.find(params[:id])
-
-  raw = @article.sentences
-
-  @segments =
-    case raw
-    when String
-      # sentences stored as JSON string → parse it
-      JSON.parse(raw)
-    when Array
-      # if later you store it as real JSONB / Array
-      raw
-    else
-      []
+    @article = Article.find(params[:id])
+    raw = @article.sentences.gsub(/```json\n|```/, '').gsub("=>", ":")
+    begin
+      @segments = JSON.parse(raw)
+    rescue JSON::ParserError => e
+      Rails.logger.error "JSON Parse Error: #{e.message}"
+      @segments = []
     end
-  rescue JSON::ParserError
-  # if the LLM ever returns bad JSON, avoid crashing
-  @segments = []
   end
 
   def create
