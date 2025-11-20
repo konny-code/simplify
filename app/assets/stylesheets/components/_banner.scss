@@ -28,6 +28,20 @@
   pointer-events: none;
 }
 
+/* Desktop-only: Limit banner height + center image */
+@media (min-width: 992px) {
+  .banner {
+    height: 340px;        /* Set the desktop height you prefer */
+  }
+
+  .banner-image {
+    width: 100%;
+    height: 100%;         /* Fill the banner box */
+    object-fit: cover;    /* Crop edges, keep center visible */
+    object-position: center center;   /* Center the important part */
+  }
+}
+
 /* Optional centered text overlay — currently unused
    Uncomment if you want text over the banner.
 ---------------------------------------------------- */
