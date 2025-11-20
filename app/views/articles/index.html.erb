@@ -9,7 +9,7 @@
   <% if @articles.any? %>
     <div class="list-group mb-5">
       <% @articles.each do |article| %>
-          <div class="d-flex w-100 justify-content-between">
+          <div class="d-flex w-100 justify-content-between border-top pt-0">
             <span class="badge bg-info text-white">
               <%= article.language_level.presence || "Level ?" %>
             </span>
