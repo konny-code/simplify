@@ -6,7 +6,6 @@ class Article < ApplicationRecord
   LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1']
   PROMPTS = {
     "N5" => "1. Reading Skills
-    What an N5 learner can read
     A JLPT N5 student can understand very short, simple sentences written in hiragana, katakana, and a small number of basic kanji (usually around 100 characters).
     You can expect to read:
       •	Short messages or memos
@@ -104,7 +103,6 @@ class Article < ApplicationRecord
     パンを 食(た)べます。
     I eat bread.",
     "N4" => "1. Reading Skills
-    What an N4 learner can read
     A JLPT N4 student can understand basic everyday texts written with a mix of hiragana, katakana, and 300+ common kanji. Reading materials may include:
       •	Simple brochures or tourist information
       •	Short letters or emails
@@ -200,7 +198,6 @@ class Article < ApplicationRecord
     電車(でんしゃ)が 遅(おく)れました。
     The train was late.",
     "N3" => "1. Reading Skills
-    What an N3 learner can read
     A JLPT N3 student can understand everyday texts with a moderate level of detail, including:
       •	Short newspaper articles
       •	Workplace notes or memos
@@ -303,7 +300,6 @@ class Article < ApplicationRecord
     二つ(ふたつ)の 商品(しょうひん)を 比較(ひかく)して、 安(やす)いほうを 買(か)った。
     I compared the two products and bought the cheaper one.",
     "N2" => "1. Reading Skills
-    What an N2 learner can read
     A JLPT N2 student can understand complex texts encountered in daily life and work, including:
       •	Full newspaper articles
       •	Short essays and opinion pieces
@@ -409,7 +405,6 @@ class Article < ApplicationRecord
     今年(ことし)の 目標(もくひょう)を 達成(たっせい)するために、 計画(けいかく)を 見直(みなお)した。
     I reviewed my plan in order to achieve this year's goals.",
     "N1" => "1. Reading Skills
-    What an N1 learner can read
     A JLPT N1 student can understand highly complex and abstract written Japanese, including:
       •	Editorials and opinion columns
       •	Academic essays and research summaries
@@ -524,13 +519,13 @@ class Article < ApplicationRecord
     prompt = <<~PROMPT
       You are a Japanese language teacher who works with international students preparing for the JLPT (Japanese Language Proficiency Test).
       I am currently studying for the JLPT at level #{language_level}.
-      Please take the following article and simplify it using grammar structures, vocabulary, and kanji that are appropriate for the JLPT #{language_level} level.
-      Simplification Guidelines base on language level: #{PROMPTS[language_level]}
+      You shoud simplify the article according to the guidelines base on language level: #{PROMPTS[language_level]}
       TASK:
       Text to simplify:
       #{original_content}
       Output:
-        Simplified Japanese version (using kanji and grammar within JLPT #{language_level})
+        Take the article and simplify it using grammar structures, vocabulary, and kanji that are appropriate for the JLPT #{language_level} level.
+        Create a short title for the article.
     PROMPT
     response = RubyLLM.chat.ask(prompt)
     self.content = response.content
