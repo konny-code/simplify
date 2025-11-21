@@ -12,10 +12,7 @@
 
     <%= render "shared/japanese_level_root", f: f %>
 
-    <%= f.input :original_content,
-                label: "",
-                placeholder: "Paste Japanese News Article text here" %>
-
+    <%= f.input :original_content, label: "", placeholder: "Paste Japanese News Article text here" %>
     <%= f.submit "Simplify", class: "btn btn-primary" %>
 
   <% end %>
