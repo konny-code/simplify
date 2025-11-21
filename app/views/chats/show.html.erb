@@ -1,13 +1,15 @@
+<header class="simplify-header"></header>
+<div class="container">
+  <div id="title" class="m-3">
+    <p>Article: <%= @article.title %></p>
+  </div>
 
-<div id="title" class="mt-5">
-  <%= @article.title %>
-</div>
+  <div id="messages">
+    <%= render 'messages/messages', messages: @chat.messages %>
+  </div>
 
-<div id="messages">
-  <%= render 'messages/messages', messages: @chat.messages %>
-</div>
-
-<div id="new_message_container">
-  <%# The keys inside of a render statement, are variables inside of that partials %>
-  <%= render 'messages/form', chat: @chat, message: @message %>
+  <div id="new-message-container">
+    <%# The keys inside of a render statement, are variables inside of that partials %>
+    <%= render 'messages/form', chat: @chat, message: @message %>
+  </div>
 </div>

@@ -613,7 +613,7 @@ class Article < ApplicationRecord
       You shoud make a title from the article according to the guidelines base on language level: #{PROMPTS[language_level]}
       TASK:
       Text to make a title:
-      #{original_content}
+      #{content}
       Output:
         Prepare a title less than 20 character long using grammar structures, vocabulary, and kanji that are appropriate for the JLPT #{language_level} level.
     PROMPT
