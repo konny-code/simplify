@@ -12,7 +12,7 @@ $font-size-base:         1rem;
 
 // Colors
 $body-color: $gray;
-$primary:    $blue;
+$primary:    #0097a7;
 $success:    $green;
 $info:       $yellow;
 $danger:     $red;
@@ -26,3 +26,5 @@ $border-radius-xl:            .5rem;
 $border-radius-xxl:           1rem;
 
 // Override other variables below!
+
+$btn-color: white;

@@ -4,8 +4,9 @@
   </span>
 
   <div class="japanese-level-form">
-    <%= f.select :language_level, options_for_select(Article::LEVELS, f.object.language_level), {}, class: "japanese-level-select" %>
-
-    <%= f.submit "SELECT", class: "japanese-level-button" %>
+    <%= f.select :language_level,
+                 options_for_select(Article::LEVELS, f.object.language_level),
+                 {},
+                 class: "japanese-level-select" %>
   </div>
 </div>
