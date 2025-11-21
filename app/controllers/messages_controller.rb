@@ -17,13 +17,16 @@ class MessagesController < ApplicationController
       build_conversation_history
       response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
       Message.create(role: "assistant", content: response.content, chat: @chat)
-
       respond_to do |format|
+      format.turbo_stream
       format.html { redirect_to chat_path(@chat) }
-      format.turbo_stream { render 'create' }
       end
     else
-      render "chats/show", status: :unprocessable_entity
+      respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("new_message", partial: "messages/form", locals: { chat: @chat, message: @message }) }
+      format.html { render "chats/show", status: :unprocessable_entity }
+      #render "chats/show", status: :unprocessable_entity
+      end
     end
   end
 
