@@ -1,3 +1,4 @@
+<header class="simplify-header"></header>
 <div class="container py-3 screen screen--articles-index">
   <header class="mb-3">
     <h1 class="h4 fw-bold mb-1">All Articles</h1>
@@ -9,15 +10,23 @@
   <% if @articles.any? %>
     <div class="list-group mb-5">
       <% @articles.each do |article| %>
-        <%= link_to article_path(article), class: "list-group-item list-group-item-action" do %>
-          <div class="d-flex w-100 justify-content-between">
+          <div class="d-flex w-100 justify-content-between border-top pt-0">
             <span class="badge bg-info text-white">
               <%= article.language_level.presence || "Level ?" %>
             </span>
             <small class="text-muted">
               <%= article.created_at&.strftime("%Y-%m-%d %H:%M") %>
             </small>
+              <%= button_to article_path(article),
+                method: :delete,
+                form:  { data: { controller: "delete-confirm" } },
+                data:  { action: "click->delete-confirm#confirm" },
+                class: "btn btn-link text-secondary p-0 m-0" do %>
+                <i class="bi bi-trash" style="font-size: 1.2rem;"></i>
+              <% end %>
           </div>
+
+        <%= link_to article_path(article), class: "list-group-item list-group-item-action" do %>
           <p class="mb-1 mt-2 small">
             <%= truncate(article.content, length: 90) %>
           </p>

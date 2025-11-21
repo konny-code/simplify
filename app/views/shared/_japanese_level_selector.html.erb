@@ -3,17 +3,8 @@
     JAPANESE LEVEL
   </span>
 
-  <%= form_with model: @article,
-                url: article_path(@article),
-                method: :patch,
-                local: true,
-                html: { class: "japanese-level-form" } do |f| %>
-
-    <%= f.select :language_level,
-                 options_for_select(Article::LEVELS, @article.language_level),
-                 {},
-                 class: "japanese-level-select" %>
-
+  <%= form_with model: @article, url: article_path(@article), method: :patch, local: true, html: { class: "japanese-level-form" } do |f| %>
+    <%= f.select :language_level, options_for_select(Article::LEVELS, @article.language_level), {}, class: "japanese-level-select" %>
     <%= f.submit "UPDATE", class: "japanese-level-button" %>
   <% end %>
 </div>

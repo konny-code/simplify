@@ -1,6 +1,5 @@
-
 <%# these variables were set in the render %>
 <%= simple_form_for [chat, message] do |f| %>
-  <%= f.input :content, label: "Ask a question about article", required: true, placeholder: "What is ..." %>
-  <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
+  <%= f.input :content, label: "", required: true, placeholder: "What is ..." %>
+  <%= f.button :submit, 'Ask anything', class: 'btn btn-primary text-white' %>
 <% end %>

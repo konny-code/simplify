@@ -1,0 +1,49 @@
+<header class="simplify-header"></header>
+<div class="container py-3 screen screen--favorites-index">
+  <header class="mb-3">
+    <h1 class="h4 fw-bold mb-1">All Favorites</h1>
+    <p class="text-muted small mb-0">
+      Words saved to Favorites from your simplified Articles
+    </p>
+  </header>
+
+  <% if @favorites.any? %>
+    <div class="list-group mb-5">
+      <% @favorites.each do |favorite| %>
+        <% translation = favorite.translation %>
+        <% article     = translation.article %>
+
+        <div class="list-group-item">
+          <div class="d-flex w-100 justify-content-between align-items-center mb-1">
+            <strong><%= translation.word %></strong>
+            <% if article %>
+              <span class="badge bg-info text-white">
+                <%= article.language_level.presence || "-" %>
+              </span>
+            <% end %>
+          </div>
+
+          <p class="mb-1 small">
+            <%= translation.definition %>
+          </p>
+
+          <% if article %>
+            <p class="mb-0 small text-muted">
+              From:
+              <%= link_to truncate(article.content, length: 40),
+                          article_path(article),
+                          class: "text-decoration-underline" %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted">
+      You haven’t saved any words to Favorites yet.
+      Go to a simplified Article and Favorite a word.
+    </p>
+  <% end %>
+
+  <%= render "shared/navbar" %>
+</div>

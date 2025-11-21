@@ -3,7 +3,7 @@
   <%= image_tag "Si.png", class: "banner-image" %>
 </div>
 
-<h4 class="text-center fw-bold">
+<h4 class="text-center fw-bold mt-3">
   LET'S SIMPLIFY NEWS TO YOUR JAPANESE LEVEL!
 </h4>
 
@@ -13,10 +13,11 @@
     <%= render "shared/japanese_level_root", f: f %>
 
     <%= f.input :original_content,
-                label: "",
-                placeholder: "Paste Japanese News Article text here" %>
+                label: "Paste your article!!",
+                placeholder: "Paste Here!!",
+                required: false %>
 
-    <%= f.submit "Simplify", class: "btn btn-primary" %>
+    <%= f.submit "Simplify", class: "btn btn-primary text-white" %>
 
   <% end %>
 </div>
