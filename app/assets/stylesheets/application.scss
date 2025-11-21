@@ -80,17 +80,3 @@
   padding: 0;
   color: white;
 }
-
-.tooltip-bookmark-btn:hover {
-  color: #174143; /* your teal theme if you like */
-}
-
-
-/* REQUIRED for clickability */
-.tooltip.simplify-tooltip {
-  pointer-events: auto !important;
-}
-
-.tooltip.simplify-tooltip .tooltip-inner {
-  pointer-events: auto !important;
-}

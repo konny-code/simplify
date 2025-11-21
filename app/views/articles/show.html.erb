@@ -9,24 +9,38 @@
 
         <div class="simplify-article-body">
           <% if @segments.any? %>
-            <% @segments.each do |segment| %>
-              <p class="simplify-sentence mb-2">
-                <% segment["parts"].each do |surface, info| %>
-                      <span class="simplify-word"
+            <% @segments.each_with_index do |segment, index| %>
+              <div class="simplify-sentence mb-2">
+                <% segment["parts"].each_with_index do |(surface, info), i| %>
+                      <span class="simplify-word" data-controller="favorite"
                             data-bs-toggle="tooltip"
                             data-bs-html="true"
                             data-bs-sanitize="false"
                             data-bs-custom-class="simplify-tooltip"
-                            data-bs-title="
-                              <div class='tooltip-meaning-card'>
-                                <span class='tooltip-meaning-text'><%= j info['meaning'] %></span>
-                                <span class='tooltip-bookmark-btn' role='button' data-surface='<%= j surface %>' data-meaning='<%= j info['meaning'] %>'><i class='fa-regular fa-bookmark'></i>
-                                </span>
-                              </div>">
-                        <%= surface %>
+                            data-action="click->favorite#setEvent"
+                            data-bs-title='
+                              <div class="tooltip-meaning-card">
+                                <span class="tooltip-meaning-text"><%= j info["meaning"] %></span>
+                                <% if @translation = @article.translations.find_by(word: surface) %>
+                                  <%= link_to translation_path(@translation), data: { turbo_method: :delete } do %>
+                                    <i class="fa-regular fa-bookmark"></i>
+                                  <% end %>
+                                <% else %>
+
+                                  <i class="fa-regular fa-bookmark" ></i>
+                                <% end %>
+                              </div>'>
+
+                          <%= surface %>
+                          <%= simple_form_for [@article, @new_translation], namespace: "new_translation-#{index}-#{i}", html:{class: "position-absolute", data: { favorite_target: "form" }} do |f| %>
+                            <%= f.input_field :word, as: :hidden, value: surface %>
+                            <%= f.input_field :reading, as: :hidden, value: info["reading"] %>
+                            <%= f.input_field :definition, as: :hidden, value: info["meaning"] %>
+                          <% end %>
+
                       </span>
                     <% end %>
-                  </p>
+                  </div>
                 <% end %>
               <% else %>
             <%= @article.content %>
