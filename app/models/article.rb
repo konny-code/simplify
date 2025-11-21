@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
-  has_many :translations
-  has_many :chats
+  has_many :translations, dependent: :destroy
+  has_many :chats, dependent: :destroy
   validates :original_content, presence: true
   LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1']
   PROMPTS = {
