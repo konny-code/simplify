@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
       Rails.logger.error "JSON Parse Error: #{e.message}"
       @segments = []
     end
+    @new_translation = Translation.new
   end
 
   def create

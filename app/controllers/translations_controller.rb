@@ -1,26 +1,19 @@
 class TranslationsController < ApplicationController
   # Login via ApplicationController
   before_action :set_article
+def create
+  @translation = Translation.new(translation_params)
+  @translation.article = @article
+  @translation.user = current_user
+  @translation.save
+  redirect_to article_path(@article), notice: "Saved #{@translation.word}!"
+end
 
-  def create
-    @translation = @article.translations.new(translation_params)
-
-    if @translation.save
-      respond_to do |format|
-        format.turbo_stream
-        format.json { render json: @translation, status: :created }
-        format.html { redirect_to article_path(@article) }
-      end
-    else
-      respond_to do |format|
-        format.json { render json: @translation.errors, status: :unprocessable_entity }
-        format.html do
-          redirect_to article_path(@article),
-                      alert: "Could not save Translation."
-        end
-      end
-    end
-  end
+def destroy
+  @translation = Translation.find(params[:id])
+  @translation.destroy
+  redirect_to article_path(@translation.article), notice: "Removed Favorite"
+end
 
   private
 
@@ -34,39 +27,3 @@ class TranslationsController < ApplicationController
     params.require(:translation).permit(:word, :definition, :reading)
   end
 end
-
-
-
-# class TranslationsController < ApplicationController
-#   # Login via ApplicationController
-#   before_action :set_article
-
-#   def create
-#     @translation = @article.translations.new(translation_params)
-
-#     if @translation.save
-#       respond_to do |format|
-#         format.turbo_stream
-#         format.json { render json: @translation, status: :created }
-#         format.html { redirect_to article_path(@article) }
-#       end
-#     else
-#       respond_to do |format|
-#         format.json { render json: @translation.errors, status: :unprocessable_entity }
-#         format.html { redirect_to article_path(@article),
-#                                  alert: "Could not save Translation." }
-#       end
-#     end
-#   end
-
-#   private
-
-#   def set_article
-#     # Article belongs to the logged-in user
-#     @article = current_user.articles.find(params[:article_id])
-#   end
-
-#   def translation_params
-#     params.require(:translation).permit(:word, :definition)
-#   end
-# end
