@@ -5,6 +5,6 @@
   <%# insert an HTML partial %>
   <%= render 'messages/messages', messages: @chat.messages.order(created_at: :asc).last(2) %>
 <% end %>
-<%= turbo_stream.update "new_message_container" do %>
-  <%= render 'messages/form', chat: @chat, message: Message.new %>
+<%= turbo_stream.update "new-message-container" do %>
+  <%= render "messages/form", chat: @chat, message: Message.new %>
 <% end %>

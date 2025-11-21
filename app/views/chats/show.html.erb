@@ -1,7 +1,7 @@
 <header class="simplify-header"></header>
 <div class="container">
   <div id="title" class="m-3">
-    <p>Article: <%= @article.title %></p>
+    <p>Article: <%= link_to "#{@article.title}", @article  %></p>
   </div>
 
   <div id="messages">
