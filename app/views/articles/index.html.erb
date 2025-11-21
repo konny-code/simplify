@@ -9,12 +9,12 @@
   <% if @articles.any? %>
     <div class="list-group mb-5">
       <% @articles.each do |article| %>
-          <div class="d-flex w-100 justify-content-between border-top pt-0">
+          <div class="list-group-item-header d-flex w-100 justify-content-between py-1 my-2">
             <span class="badge bg-info text-white">
               <%= article.language_level.presence || "Level ?" %>
             </span>
-            <small class="text-muted">
-              <%= article.created_at&.strftime("%Y-%m-%d %H:%M") %>
+            <small class="article-title align-self-center">
+              <%= "Title: #{article.title}" %>
             </small>
               <%= button_to article_path(article),
                 method: :delete,
